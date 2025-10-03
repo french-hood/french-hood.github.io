@@ -1,38 +1,488 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join French Hood</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
-    <div class="clouds"></div>
-    
-    <!-- Curseur météorite personnalisé amélioré -->
-    <div class="custom-cursor">
-        <div class="meteorite-core"></div>
-        <div class="meteorite-body"></div>
-        <div class="meteorite-trail"></div>
-        <div class="meteorite-sparks"></div>
-        <div class="meteorite-glow"></div>
-    </div>
-    
-    <div class="container">
-        <div class="content">
-            <h1 class="title">French Hood</h1>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-            <div class="buttons-container">
-                <button class="join-btn" onclick="redirectToLink()">JOIN</button>
-                <button class="discord-btn" onclick="redirectToDiscord()">DISCORD</button>
-                <button class="tiktok-btn" onclick="redirectToTikTok()">TIKTOK</button>
-            </div>
-        </div>
-    </div>
+body {
+    font-family: 'Orbitron', monospace;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+    cursor: none; /* Cache le curseur par défaut */
+}
+
+/* Animation des étoiles */
+.stars, .twinkling, .clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.stars {
+    background: #000 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.8"/><circle cx="80" cy="40" r="0.5" fill="white" opacity="0.6"/><circle cx="40" cy="80" r="1.5" fill="white" opacity="0.9"/><circle cx="90" cy="90" r="0.8" fill="white" opacity="0.7"/><circle cx="10" cy="60" r="1.2" fill="white" opacity="0.8"/><circle cx="60" cy="10" r="0.6" fill="white" opacity="0.5"/><circle cx="30" cy="50" r="1" fill="white" opacity="0.9"/><circle cx="70" cy="70" r="0.7" fill="white" opacity="0.6"/></svg>') repeat;
+    background-size: 200px 200px;
+    animation: move-twink-back 200s linear infinite;
+}
+
+.twinkling {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="1" fill="white" opacity="0.3"/><circle cx="75" cy="45" r="0.5" fill="white" opacity="0.2"/><circle cx="45" cy="85" r="1.5" fill="white" opacity="0.4"/><circle cx="85" cy="95" r="0.8" fill="white" opacity="0.3"/><circle cx="15" cy="65" r="1.2" fill="white" opacity="0.2"/><circle cx="65" cy="15" r="0.6" fill="white" opacity="0.1"/><circle cx="35" cy="55" r="1" fill="white" opacity="0.3"/><circle cx="75" cy="75" r="0.7" fill="white" opacity="0.2"/></svg>') repeat;
+    background-size: 200px 200px;
+    animation: move-twink-back 100s linear infinite;
+}
+
+.clouds {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><ellipse cx="20" cy="20" rx="15" ry="5" fill="%23663399" opacity="0.1"/><ellipse cx="80" cy="40" rx="20" ry="8" fill="%23993366" opacity="0.08"/><ellipse cx="40" cy="80" rx="12" ry="6" fill="%23440088" opacity="0.12"/></svg>') repeat;
+    background-size: 300px 300px;
+    animation: move-twink-back 300s linear infinite;
+}
+
+@keyframes move-twink-back {
+    from {background-position: 0 0;}
+    to {background-position: -10000px 5000px;}
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.content {
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px #8A2BE2, 0 0 40px #8A2BE2, 0 0 60px #8A2BE2;
+    animation: glow 2s ease-in-out infinite alternate;
+    letter-spacing: 0.2em;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    opacity: 0.8;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.join-btn, .discord-btn, .tiktok-btn {
+    border: none;
+    color: white;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 200px;
+}
+
+.join-btn {
+    background: linear-gradient(45deg, #8A2BE2, #9932CC, #8A2BE2);
+    background-size: 200% 200%;
+    box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+    animation: gradient-shift 3s ease infinite, pulse 2s ease-in-out infinite;
+}
+
+.discord-btn {
+    background: linear-gradient(45deg, #5865F2, #7289DA, #5865F2);
+    background-size: 200% 200%;
+    box-shadow: 0 0 30px rgba(88, 101, 242, 0.5);
+    animation: gradient-shift 3s ease infinite, pulse-discord 2s ease-in-out infinite;
+}
+
+.tiktok-btn {
+    background: linear-gradient(45deg, #000000, #FF0050, #000000);
+    background-size: 200% 200%;
+    box-shadow: 0 0 30px rgba(255, 0, 80, 0.5);
+    animation: gradient-shift 3s ease infinite, pulse-tiktok 2s ease-in-out infinite;
+}
+
+.join-btn::before, .discord-btn::before, .tiktok-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.join-btn:hover::before, .discord-btn:hover::before, .tiktok-btn:hover::before {
+    left: 100%;
+}
+
+.join-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(138, 43, 226, 0.7);
+    background-size: 100% 100%;
+}
+
+.discord-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(88, 101, 242, 0.7);
+    background-size: 100% 100%;
+}
+
+.tiktok-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(255, 0, 80, 0.7);
+    background-size: 100% 100%;
+}
+
+.join-btn:active, .discord-btn:active, .tiktok-btn:active {
+    transform: translateY(-1px);
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px #8A2BE2, 0 0 40px #8A2BE2, 0 0 60px #8A2BE2;
+    }
+    to {
+        text-shadow: 0 0 30px #8A2BE2, 0 0 50px #8A2BE2, 0 0 70px #8A2BE2;
+    }
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 50px rgba(138, 43, 226, 0.8);
+    }
+}
+
+@keyframes pulse-discord {
+    0%, 100% {
+        box-shadow: 0 0 30px rgba(88, 101, 242, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 50px rgba(88, 101, 242, 0.8);
+    }
+}
+
+@keyframes pulse-tiktok {
+    0%, 100% {
+        box-shadow: 0 0 30px rgba(255, 0, 80, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 50px rgba(255, 0, 80, 0.8);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
     
-    <script src="script.js"></script>
-</body>
-</html>
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .join-btn, .discord-btn, .tiktok-btn {
+        font-size: 1.2rem;
+        padding: 0.8rem 2rem;
+        min-width: 180px;
+    }
+    
+    .buttons-container {
+        gap: 1rem;
+    }
+    
+    .content {
+        padding: 1rem;
+    }
+}
+
+/* Curseur météorite personnalisé amélioré */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center center;
+}
+
+/* Noyau de la météorite */
+.meteorite-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #FFFFFF, #FFD700, #FF6B35);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 
+        0 0 8px #FFFFFF,
+        0 0 16px #FFD700,
+        0 0 24px #FF6B35,
+        inset 0 0 4px rgba(255, 255, 255, 0.8);
+    animation: core-pulse 1.5s ease-in-out infinite alternate;
+}
+
+/* Corps principal de la météorite */
+.meteorite-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(ellipse at 30% 30%, 
+        #FF6B35 0%, 
+        #F7931E 30%, 
+        #E55A2B 60%, 
+        #8B4513 100%);
+    border-radius: 50% 50% 50% 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+    box-shadow: 
+        0 0 12px rgba(255, 107, 53, 0.6),
+        0 0 24px rgba(247, 147, 30, 0.4),
+        inset -2px -2px 4px rgba(0, 0, 0, 0.3),
+        inset 2px 2px 4px rgba(255, 255, 255, 0.2);
+    animation: body-rotation 3s linear infinite;
+}
+
+/* Traînée de la météorite - masquée */
+.meteorite-trail {
+    display: none;
+}
+
+/* Étincelles autour de la météorite */
+.meteorite-sparks {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+}
+
+.meteorite-sparks::before,
+.meteorite-sparks::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 4px #FFD700;
+}
+
+.meteorite-sparks::before {
+    top: 2px;
+    left: 8px;
+    animation: spark-1 2s ease-in-out infinite;
+}
+
+.meteorite-sparks::after {
+    bottom: 2px;
+    right: 8px;
+    animation: spark-2 2s ease-in-out infinite 0.5s;
+}
+
+/* Aura lumineuse */
+.meteorite-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, 
+        rgba(255, 107, 53, 0.3) 0%, 
+        rgba(247, 147, 30, 0.2) 50%, 
+        transparent 100%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: glow-pulse 2s ease-in-out infinite alternate;
+}
+
+/* Animation pour le curseur au survol des boutons */
+.custom-cursor.hover {
+    transform: scale(1.8);
+}
+
+.custom-cursor.hover .meteorite-core {
+    background: radial-gradient(circle, #FFFFFF, #8A2BE2, #9932CC);
+    box-shadow: 
+        0 0 12px #FFFFFF,
+        0 0 20px #8A2BE2,
+        0 0 30px #9932CC,
+        inset 0 0 6px rgba(255, 255, 255, 0.9);
+}
+
+.custom-cursor.hover .meteorite-body {
+    background: radial-gradient(ellipse at 30% 30%, 
+        #8A2BE2 0%, 
+        #9932CC 30%, 
+        #7B2CBF 60%, 
+        #4A148C 100%);
+    box-shadow: 
+        0 0 16px rgba(138, 43, 226, 0.8),
+        0 0 32px rgba(153, 50, 204, 0.6),
+        inset -2px -2px 6px rgba(0, 0, 0, 0.4),
+        inset 2px 2px 6px rgba(255, 255, 255, 0.3);
+}
+
+.custom-cursor.hover .meteorite-trail {
+    display: none;
+}
+
+.custom-cursor.hover .meteorite-glow {
+    background: radial-gradient(circle, 
+        rgba(138, 43, 226, 0.4) 0%, 
+        rgba(153, 50, 204, 0.3) 50%, 
+        transparent 100%);
+}
+
+/* Animations améliorées */
+@keyframes core-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 
+            0 0 8px #FFFFFF,
+            0 0 16px #FFD700,
+            0 0 24px #FF6B35,
+            inset 0 0 4px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.2);
+        box-shadow: 
+            0 0 12px #FFFFFF,
+            0 0 20px #FFD700,
+            0 0 30px #FF6B35,
+            inset 0 0 6px rgba(255, 255, 255, 1);
+    }
+}
+
+@keyframes body-rotation {
+    0% {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(405deg);
+    }
+}
+
+@keyframes trail-flicker {
+    0% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) rotate(45deg) scaleX(1);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(45deg) scaleX(1.3);
+    }
+}
+
+@keyframes spark-1 {
+    0%, 100% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-3px, -3px) scale(1);
+    }
+}
+
+@keyframes spark-2 {
+    0%, 100% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(3px, 3px) scale(1);
+    }
+}
+
+@keyframes glow-pulse {
+    0% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* Animations pour les particules */
+@keyframes trail-particle-fade {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+}
+
+@keyframes spark-burst {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(calc(var(--end-x) - var(--start-x, 0px)), calc(var(--end-y) - var(--start-y, 0px))) scale(0.2);
+    }
+}
+
+@keyframes click-explosion {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(calc(var(--end-x) - var(--start-x, 0px)), calc(var(--end-y) - var(--start-y, 0px))) scale(0.1);
+    }
+}
